@@ -1,6 +1,64 @@
 import cv2
 import mediapipe as mp
 
+connections = [
+    # Thumb
+    (0,1),
+    (1,2),
+    (2,3),
+    (3,4),
+    # Index finger
+    (0,5),
+    (5,6),
+    (6,7),
+    (7,8),
+    # Middle finger
+    (0,9),
+    (9,10),
+    (10,11),
+    (11,12),
+    # Ring finger
+    (0,13),
+    (13,14),
+    (14,15),
+    (15,16),
+    # Pinky
+    (0,17),
+    (17,18),
+    (18,19),
+    (19,20),
+    # Palm connections
+    (5,9),
+    (9,13),
+    (13,17)
+]
+def draw_connections(frame, landmarks):
+    h,w,_ = frame.shape
+    for start,end in connections:
+        x1 = int(landmarks[start].x*w)
+        y1 = int(landmarks[start].y*h)
+
+        x2 = int(landmarks[end].x*w)
+        y2 = int(landmarks[end].y*h)
+        cv2.line(
+            frame,
+            (x1,y1),
+            (x2,y2),
+            (255,0,0),
+            2
+        )
+def draw_points(frame, landmarks):
+    h,w,_ = frame.shape
+    for point in landmarks:
+        x = int(point.x*w)
+        y = int(point.y*h)
+        cv2.circle(
+            frame,
+            (x,y),
+            5,
+            (0,255,0),
+            -1
+        )
 
 # Create hand detector
 BaseOptions = mp.tasks.BaseOptions
@@ -34,7 +92,10 @@ while True:
     )
     # Detect hand
     result = detector.detect(mp_image)
-    print(result)
+    if result.hand_landmarks:
+        for hand_landmarks in result.hand_landmarks:
+            draw_points(frame, hand_landmarks)
+            draw_connections(frame,hand_landmarks)
     cv2.imshow(
         "Camera",
         frame
