@@ -60,6 +60,51 @@ def draw_points(frame, landmarks):
             -1
         )
 
+def finger_is_open(landmarks, tip, joint):
+    return landmarks[tip].y < landmarks[joint].y
+
+def count_fingers(landmarks, hand_label):
+    index_open = finger_is_open(landmarks, 8, 6)
+    middle_open = finger_is_open(landmarks, 12, 10)
+    ring_open = finger_is_open(landmarks, 16, 14)
+    pinky_open = finger_is_open(landmarks, 20, 18)
+    if hand_label == "Right":
+        thumb_open = finger_is_open(landmarks, 4, 3)
+    elif hand_label == "Left":
+        thumb_open = finger_is_open(landmarks, 3, 4)
+    count = 0
+    if thumb_open:
+        count += 1
+    if index_open:
+        count += 1
+    if middle_open:
+        count += 1
+    if ring_open:
+        count += 1
+    if pinky_open:
+        count += 1
+    return count
+
+import math
+
+
+def calculate_angle(a, b, c):
+    """
+    Calculate angle ABC using three landmarks.
+    """
+
+    angle = math.degrees(
+        math.atan2(c.y - b.y, c.x - b.x)
+        - math.atan2(a.y - b.y, a.x - b.x)
+    )
+
+    angle = abs(angle)
+
+    if angle > 180:
+        angle = 360 - angle
+
+    return angle
+
 # Create hand detector
 BaseOptions = mp.tasks.BaseOptions
 HandLandmarker = mp.tasks.vision.HandLandmarker
@@ -96,6 +141,21 @@ while True:
         for hand_landmarks in result.hand_landmarks:
             draw_points(frame, hand_landmarks)
             draw_connections(frame,hand_landmarks)
+            hand_label = (
+                result.handedness[0][0].category_name
+            )
+            count = count_fingers(hand_landmarks, hand_label)
+
+            cv2.putText(
+                frame,
+                f"Number: {count}",
+                (50, 50),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                2,
+                (0, 255, 0),
+                3
+            )
+
     cv2.imshow(
         "Camera",
         frame
