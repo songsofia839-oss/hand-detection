@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Try It — Hand Detection</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="index.html" class="logo">Hand<span>Detection</span></a>
+
+        <nav>
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="play.html" class="nav-link active">Try It</a>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <section class="play-section">
+
+            <div class="play-heading">
+
+                <p class="eyebrow">INTERACTIVE DEMO</p>
+
+                <h1>
+                    Show me your hand.
+                </h1>
+
+                <p>
+                    Allow camera access, hold your hand in front of
+                    the camera, and see what number is detected.
+                </p>
+
+            </div>
+
+
+            <div class="detector">
+
+                <!-- Camera -->
+                <div class="camera-container">
+
+                    <video
+                        id="camera"
+                        autoplay
+                        playsinline>
+                    </video>
+
+                    <div id="camera-message" class="camera-message">
+                        Camera is not running
+                    </div>
+
+                </div>
+
+
+                <!-- Result -->
+                <div class="result-container">
+
+                    <p class="result-label">
+                        DETECTED NUMBER
+                    </p>
+
+                    <div id="result" class="result-number">
+                        —
+                    </div>
+
+                    <p id="status" class="status">
+                        Camera is off
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Controls -->
+            <div class="controls">
+
+                <button id="start-camera" class="primary-button button">
+                    Start Camera
+                    <span>→</span>
+                </button>
+
+                <button id="stop-camera" class="secondary-button button">
+                    Stop Camera
+                </button>
+
+            </div>
+
+
+            <!-- Instructions -->
+            <div class="instructions">
+
+                <h2>How to use</h2>
+
+                <div class="instruction-list">
+
+                    <div>
+                        <span>01</span>
+                        <p>Start your camera.</p>
+                    </div>
+
+                    <div>
+                        <span>02</span>
+                        <p>Place one hand in front of the camera.</p>
+                    </div>
+
+                    <div>
+                        <span>03</span>
+                        <p>Hold up between 0 and 5 fingers.</p>
+                    </div>
+
+                    <div>
+                        <span>04</span>
+                        <p>Watch the detected number appear.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>Hand Detection Project</p>
+        <p>Computer Vision × Web Development</p>
+    </footer>
+
+
+    <script src="play.js"></script>
+
+</body>
+</html>

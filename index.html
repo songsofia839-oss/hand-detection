@@ -2,9 +2,216 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hand Detection</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <a href="index.html" class="logo">Hand<span>Detection</span></a>
+
+        <nav>
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="play.html" class="nav-link">Try It</a>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- Hero Section -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">COMPUTER VISION × WEB DEVELOPMENT</p>
+
+                <h1>
+                    What number<br>
+                    are you holding up?
+                </h1>
+
+                <p class="hero-description">
+                    A computer vision project that uses your webcam
+                    to recognize the number of fingers you're holding up.
+                </p>
+
+                <a href="play.html" class="primary-button">
+                    Try It Yourself
+                    <span>→</span>
+                </a>
+
+            </div>
+
+
+            <div class="hero-visual">
+
+                <div class="number-display">
+                    <span class="number-label">DETECTED</span>
+                    <span class="big-number">5</span>
+                </div>
+
+                <div class="hand-card">
+                    <div class="hand-placeholder">
+                        ✋
+                    </div>
+
+                    <div class="detection-line line-1"></div>
+                    <div class="detection-line line-2"></div>
+                    <div class="detection-line line-3"></div>
+
+                    <div class="landmark-dot dot-1"></div>
+                    <div class="landmark-dot dot-2"></div>
+                    <div class="landmark-dot dot-3"></div>
+                    <div class="landmark-dot dot-4"></div>
+                    <div class="landmark-dot dot-5"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- How It Works -->
+        <section class="how-section">
+
+            <div class="section-heading">
+                <p class="eyebrow">HOW IT WORKS</p>
+
+                <h2>
+                    From your hand<br>
+                    to a number.
+                </h2>
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+                    <span class="step-number">01</span>
+
+                    <h3>Capture</h3>
+
+                    <p>
+                        Your webcam captures an image of your hand
+                        directly in the browser.
+                    </p>
+                </div>
+
+
+                <div class="step">
+                    <span class="step-number">02</span>
+
+                    <h3>Detect</h3>
+
+                    <p>
+                        MediaPipe identifies the key landmarks
+                        across your hand and fingers.
+                    </p>
+                </div>
+
+
+                <div class="step">
+                    <span class="step-number">03</span>
+
+                    <h3>Analyze</h3>
+
+                    <p>
+                        The detection algorithm analyzes the angles
+                        between your finger joints.
+                    </p>
+                </div>
+
+
+                <div class="step">
+                    <span class="step-number">04</span>
+
+                    <h3>Recognize</h3>
+
+                    <p>
+                        The system determines how many fingers
+                        are open and displays the result.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Technology -->
+        <section class="tech-section">
+
+            <div>
+                <p class="eyebrow">THE TECHNOLOGY</p>
+
+                <h2>Built with simple<br>tools, powerful ideas.</h2>
+            </div>
+
+
+            <div class="tech-list">
+
+                <div class="tech-item">
+                    <span>01</span>
+                    <strong>Python</strong>
+                    <p>Backend logic</p>
+                </div>
+
+                <div class="tech-item">
+                    <span>02</span>
+                    <strong>MediaPipe</strong>
+                    <p>Hand landmark detection</p>
+                </div>
+
+                <div class="tech-item">
+                    <span>03</span>
+                    <strong>OpenCV</strong>
+                    <p>Image processing</p>
+                </div>
+
+                <div class="tech-item">
+                    <span>04</span>
+                    <strong>JavaScript</strong>
+                    <p>Interactive web experience</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+
+            <p class="eyebrow">READY?</p>
+
+            <h2>
+                Put your hand<br>
+                to the test.
+            </h2>
+
+            <a href="play.html" class="primary-button">
+                Launch Detector
+                <span>→</span>
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>Hand Detection Project</p>
+        <p>Built with Python, MediaPipe & JavaScript</p>
+    </footer>
+
+
+    <script src="main.js"></script>
 
 </body>
 </html>

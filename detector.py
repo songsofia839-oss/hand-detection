@@ -14,7 +14,8 @@ class HandDetector:
             base_options=BaseOptions(
                 model_asset_path="hand_landmarker.task"
             ),
-            running_mode=VisionRunningMode.IMAGE, num_hands=1
+            running_mode=VisionRunningMode.IMAGE,
+            num_hands=1
         )
 
         self.detector = HandLandmarker.create_from_options(options)
