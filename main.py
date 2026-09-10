@@ -1,26 +1,44 @@
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 import cv2
+import numpy as np
+import base64
+
 from detector import HandDetector
 
+app = Flask(__name__)
+CORS(app)
+
 detector = HandDetector()
-camera = cv2.VideoCapture(0)
 
-while True:
-    success, frame = camera.read()
+
+@app.route("/detect", methods=["POST"])
+def detect():
+    # Get image sent by JavaScript
+    file = request.files["image"]
+
+    # Convert uploaded image into OpenCV format
+    image_bytes = file.read()
+    np_array = np.frombuffer(image_bytes, np.uint8)
+    frame = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
+
+    # Run hand detection
+    result = detector.detect(frame)
+
+    # Encode annotated frame as JPEG
+    success, buffer = cv2.imencode(".jpg", frame)
+
     if not success:
-        break
-    # Detect hand
-    count = detector.detect(frame)
-    if count == None:
-        text = "No hand detected"
-    else:
-        text = f"Number : {count}"
-    cv2.putText(frame, text, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        return jsonify({"error": "Could not encode image"}), 500
 
-    cv2.imshow(
-        "Hand Detection",
-        frame
-    )
-    if cv2.waitKey(1) == ord("q"):
-        break
-camera.release()
-cv2.destroyAllWindows()
+    # Convert JPEG to base64
+    image_base64 = base64.b64encode(buffer).decode("utf-8")
+
+    return jsonify({
+        "number": result,
+        "image": image_base64
+    })
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

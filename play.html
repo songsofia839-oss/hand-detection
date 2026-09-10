@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +14,9 @@
 
     <!-- Navigation -->
     <header class="navbar">
-        <a href="index.html" class="logo">Hand<span>Detection</span></a>
+        <a href="index.html" class="logo">
+            Hand<span>Detection</span>
+        </a>
 
         <nav>
             <a href="index.html" class="nav-link">Home</a>
@@ -22,26 +25,29 @@
     </header>
 
 
+    <!-- Main Content -->
     <main>
 
         <section class="play-section">
 
+            <!-- Heading -->
             <div class="play-heading">
 
-                <p class="eyebrow">INTERACTIVE DEMO</p>
+                <p class="eyebrow">LIVE DETECTOR</p>
 
                 <h1>
-                    Show me your hand.
+                    Show your hand.
                 </h1>
 
                 <p>
-                    Allow camera access, hold your hand in front of
-                    the camera, and see what number is detected.
+                    Hold up your hand and let the computer
+                    vision model detect the number of fingers.
                 </p>
 
             </div>
 
 
+            <!-- Detector -->
             <div class="detector">
 
                 <!-- Camera -->
@@ -53,7 +59,13 @@
                         playsinline>
                     </video>
 
-                    <div id="camera-message" class="camera-message">
+                    <img
+                        id="detection-overlay"
+                        alt="Detection">
+
+                    <div
+                        id="camera-message"
+                        class="camera-message">
                         Camera is not running
                     </div>
 
@@ -63,36 +75,49 @@
                 <!-- Result -->
                 <div class="result-container">
 
-                    <p class="result-label">
+                    <div class="result-label">
                         DETECTED NUMBER
-                    </p>
+                    </div>
 
-                    <div id="result" class="result-number">
+                    <div
+                        id="result"
+                        class="result-number">
                         —
                     </div>
 
-                    <p id="status" class="status">
+                    <div
+                        id="status"
+                        class="status">
                         Camera is off
-                    </p>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="controls">
+
+                        <button
+                            id="start-camera"
+                            class="primary-button button">
+                            Start Camera
+                        </button>
+
+                        <button
+                            id="stop-camera"
+                            class="secondary-button button">
+                            Stop Camera
+                        </button>
+
+                    </div>
 
                 </div>
 
             </div>
 
 
-            <!-- Controls -->
-            <div class="controls">
-
-                <button id="start-camera" class="primary-button button">
-                    Start Camera
-                    <span>→</span>
-                </button>
-
-                <button id="stop-camera" class="secondary-button button">
-                    Stop Camera
-                </button>
-
-            </div>
+            <!-- Hidden canvas used to capture frames -->
+            <canvas
+                id="canvas"
+                style="display: none;">
+            </canvas>
 
 
             <!-- Instructions -->
@@ -131,9 +156,13 @@
     </main>
 
 
+    <!-- Footer -->
     <footer>
+
         <p>Hand Detection Project</p>
+
         <p>Computer Vision × Web Development</p>
+
     </footer>
 
 
