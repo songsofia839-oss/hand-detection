@@ -3,3 +3,4 @@ flask-cors
 opencv-python
 mediapipe
 numpy
+gunicorn
