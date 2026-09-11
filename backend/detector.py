@@ -1,6 +1,8 @@
 import cv2
 import mediapipe as mp
 import math
+import os
+
 
 class HandDetector:
     def __init__(self):
@@ -12,7 +14,10 @@ class HandDetector:
 
         options = HandLandmarkerOptions(
             base_options=BaseOptions(
-                model_asset_path="hand_landmarker.task"
+                model_asset_path=os.path.join(
+                    os.path.dirname(__file__),
+                    "hand_landmarker.task"
+                )
             ),
             running_mode=VisionRunningMode.IMAGE,
             num_hands=1
